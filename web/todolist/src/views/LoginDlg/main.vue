@@ -19,17 +19,17 @@
         <el-form-item class="flex">
             <div class="flex" style="display: flex;justify-content: center;">
                 <el-checkbox v-model="save_password" style="margin-right: 10px;">记住密码</el-checkbox>
-                <el-link type="primary" :underline="false">忘记密码</el-link>
+                <el-link type="primary" :underline="false" @click="OnLog">忘记密码</el-link>
             </div>
         </el-form-item>
 
         <el-form-item class="flex">
-            <el-link type="primary" :underline="false">注册用户</el-link>
+            <el-link type="primary" :underline="false" @click.native="OnRegister">注册用户</el-link>
         </el-form-item>
 
 
         <el-form-item>
-            <el-button class="button" type="primary" @click="OnLog">
+            <el-button class="button" type="primary" @click.native="OnResetPassword">
                 登录
             </el-button>
         </el-form-item>

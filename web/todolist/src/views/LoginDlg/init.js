@@ -1,4 +1,4 @@
-import bridgr from "../../assets/js/client_bridge.js";
+import bridge from "../../assets/js/client_bridge.js";
 
 export default {
     name: "LoginView",
@@ -10,14 +10,14 @@ export default {
             save_password: false,
         };
     },
-    created() {
+    mounted() {
         this.init();
     },
     computed: {
     },
     methods: {
         init() {
-            let userInfo = this.$store.state.UserInfo;
+            let userInfo = this.$store?.state.UserInfo;
             this.username = userInfo.username;
             this.password = userInfo.password;
             this.save_password = userInfo.save_password;
@@ -36,18 +36,23 @@ export default {
                 username: this.username,
                 password: this.password,
             };
-            bridgr.bridge({
+            bridge.bridge({
                 namespace: "TodoList",
                 method: "Login",
                 params: [param],
                 callback: function (res) {
-                    if (!res.ErrorInfo || res.ErrorInfo.length <= 0) {
+                    if (res && (!"ErrorInfo" in res || res.ErrorInfo.length <= 0)) {
                         // TODO
                         this.$store.commit("setUsername", this.username);
                     }
                 },
             });
         },
+        OnRegister() {
+            this.$router.push("/Register")
+        },
+        OnResetPassword() {
+            this.$router.push("/ResetPassword")
+        },
     },
-    created() {},
 };
