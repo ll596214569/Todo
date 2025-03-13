@@ -7,20 +7,15 @@
         </div>
     </div>
 
-  <!--<div id="app">
-    <LoginDlg />
-  </div>-->
 </template>
 
 <script>
 import bridge from "./assets/js/client_bridge.js";
-import LoginDlg from './views/LoginDlg'
+
 
 export default {
     name: 'App',
     components: {
-        LoginDlg,
-        bridge
     },
     data() {
         return {
@@ -55,7 +50,7 @@ export default {
                 params: [],
                 callback: function (res) {
                     if (res && (!res.ErrorInfo || res.ErrorInfo.length <= 0)) {
-                        
+                        this.$store.commit("setUserInfo", this.res.Data);
                     }
                 },
             });
